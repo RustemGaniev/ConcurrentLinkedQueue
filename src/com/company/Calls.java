@@ -4,8 +4,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Calls {
 
-
-    static long answerTime = 350;
     static int callsNumber = 60;
     static long inComingTime = 100;
     static int startInComingPortNumber = 900;
@@ -21,11 +19,12 @@ public class Calls {
         }
     }
 
-    public void getCall() throws InterruptedException {
+    public void getCall(long answerTime) throws InterruptedException {
         while (!inComingCalls.isEmpty()) {
-            inComingCalls.poll();
-            System.out.println(" Служба поддержки отработала входящий звонок");
             Thread.sleep(answerTime);
+            inComingCalls.poll();
+            System.out.println( Thread.currentThread().getName() + " отработал входящий звонок");
+
         }
     }
 
